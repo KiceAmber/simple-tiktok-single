@@ -1,0 +1,51 @@
+package jwt
+
+import (
+	"errors"
+	"simple_tiktok_rime/internal/consts"
+	"time"
+
+	"github.com/dgrijalva/jwt-go"
+)
+
+var mySecret = []byte("simple_tiktok_ju3lgolyt123&h")
+
+type MyClaims struct {
+	Id int64 `json:"id"`
+	jwt.StandardClaims
+}
+
+// GenToken 生成Token
+func GenToken(id int64) (string, error) {
+	// 首先创建一个自己声明的 claims 对象
+	claims := MyClaims{
+		Id: id,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(consts.TokenExpireDuration).Unix(),
+			Issuer:    "simple_tiktok",
+		},
+	}
+
+	// 指定签名方法来创建签名对象
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	// 使用指定的secret签名，并获得完整的编码后的字符串token
+	return token.SignedString(mySecret)
+}
+
+// ParseToken 解析 token
+func ParseToken(tokenString string) (*MyClaims, error) {
+	var myClaims = new(MyClaims)
+
+	token, err := jwt.ParseWithClaims(tokenString, myClaims, func(token *jwt.Token) (interface{}, error) {
+		return mySecret, nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	if token.Valid {
+		return myClaims, nil
+	}
+	return nil, errors.New("invalid token")
+}
