@@ -1,8 +1,9 @@
 package consts
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 // RespCode 响应码封装
@@ -27,6 +28,10 @@ var codeMsg = map[RespCode]string{
 	// 点赞 Code
 	CodeUserFavoritedVideo:   "用户已对该视频点赞",
 	CodeUserNotFavoriteVideo: "用户未对该视频点赞",
+
+	// 关注 Code
+	CodeUserFollowedTargetUser: "已对关注用户",
+	CodeUserNotFollowTargetUser: "未关注该用户",
 }
 
 func (c RespCode) GetMsg() string {

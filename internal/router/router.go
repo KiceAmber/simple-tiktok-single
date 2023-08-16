@@ -30,9 +30,9 @@ func Init() *gin.Engine {
 
 	// 视频模块
 	{
-		r.GET("/douyin/feed/", controller.VideoFeed)                    // 视频流
-		r.POST("/douyin/publish/action/", controller.PublishVideo)      // 发布视频投稿
-		r.GET("/douyin/publish/list", controller.GetVideoPublishedList) // 视频发布列表
+		r.GET("/douyin/feed/", controller.VideoFeed)                     // 视频流
+		r.POST("/douyin/publish/action/", controller.PublishVideo)       // 发布视频投稿
+		r.GET("/douyin/publish/list/", controller.GetVideoPublishedList) // 视频发布列表
 	}
 
 	// 评论模块
@@ -45,6 +45,13 @@ func Init() *gin.Engine {
 	{
 		r.POST("/douyin/favorite/action/", controller.FavoriteAction)   // 点赞操作
 		r.GET("/douyin/favorite/list/", controller.GetUserFavoriteList) // 点赞列表(喜欢列表)
+	}
+
+	// 关注模块
+	{
+		r.POST("/douyin/relation/action/", controller.FollowAction)          // 关注操作
+		r.GET("/douyin/relation/follow/list/", controller.GetFollowList)     // 关注列表
+		r.GET("/douyin/relation/follower/list/", controller.GetFollowerList) // 粉丝列表
 	}
 
 	// 错误路由

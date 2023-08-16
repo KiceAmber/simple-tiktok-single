@@ -119,3 +119,21 @@ func TestGormTransaction(t *testing.T) {
 	})
 	t.Log("执行完毕")
 }
+
+func TestCreateRow(t *testing.T) {
+	dsn := "root:root@tcp(127.0.0.1:3306)/simple_tiktok?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		t.Fatal("connect DB error, ", err)
+	}
+
+	follow := &entity.Follow{
+		Id:         111,
+		UserId:     120,
+		FollowerId: 110,
+	}
+	err = db.Create(follow).Error
+	if err != nil {
+		t.Fatal("err =>", err)
+	}
+}

@@ -31,6 +31,10 @@ const (
 	// 点赞响应码
 	CodeUserFavoritedVideo
 	CodeUserNotFavoriteVideo
+
+	// 关注响应码
+	CodeUserFollowedTargetUser
+	CodeUserNotFollowTargetUser
 )
 
 // 封装错误码
@@ -40,6 +44,8 @@ var (
 	ErrUserExists           = errors.New("用户已存在")
 	ErrUserFavoritedVideo   = errors.New("用户已对该视频点赞")
 	ErrUserNotFavoriteVideo = errors.New("用户未对该视频点赞")
+	ErrUserFollowedTargetUser   = errors.New("已关注该用户")
+	ErrUserNotFollowTargetUser = errors.New("未关注该用户")
 )
 
 // 其他常量
