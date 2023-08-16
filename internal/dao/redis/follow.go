@@ -25,6 +25,7 @@ func Follow() *dFollow {
 func (*dFollow) IsUserFollow(userId int64, targetUserId int64) (bool, error) {
 
 	userKey := fmt.Sprintf("user:%d:follow_user", userId)
+
 	return rdb.SIsMember(context.Background(), userKey, targetUserId).Result()
 }
 
