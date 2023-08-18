@@ -101,3 +101,37 @@ func (*dFollow) GetFollowerList(in *model.GetFollowerListInput) (*model.GetFollo
 
 	return out, nil
 }
+
+// GetFriendList 获取好友列表
+func (*dFollow) GetFriendList(in *model.GetFriendListInput) (*model.GetFriendListOutput, error) {
+
+	out := &model.GetFriendListOutput{UserList: []*model.UserItem{}}
+	friendList := []*entity.User{}
+
+	if err := engine.Table("user").
+		Joins("JOIN follow f1 ON f1.follower_id = user.id").
+		Joins("JOIN follow f2 ON f2.user_id = f1.follower_id").
+		Where("f1.user_id = ?", in.UserId).
+		Find(&friendList).Error; err != nil {
+		return nil, err
+	}
+
+	for _, friend := range friendList {
+		var userItem = &model.UserItem{
+			Id:              friend.Id,
+			FollowCount:     friend.FollowCount,
+			FollowerCount:   friend.FollowerCount,
+			TotalFavorited:  friend.TotalFavorited,
+			WorkCount:       friend.WorkCount,
+			FavoriteCount:   friend.FavoriteCount,
+			Name:            friend.Name,
+			Avatar:          friend.Avatar,
+			BackgroundImage: friend.BackgroundImage,
+			Signature:       friend.Signature,
+			IsFollow:        true,
+		}
+
+		out.UserList = append(out.UserList, userItem)
+	}
+	return out, nil
+}

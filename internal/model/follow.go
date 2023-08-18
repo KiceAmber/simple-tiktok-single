@@ -30,3 +30,13 @@ type GetFollowerListInput struct {
 type GetFollowerListOutput struct {
 	UserList []*UserItem `json:"user_list"`
 }
+
+// GetFriendListInput 获取好友列表 Input
+type GetFriendListInput struct {
+	UserId int64 `json:"user_id"`
+}
+
+// GetFriendListOutput 获取好友列表 Output
+type GetFriendListOutput struct {
+	UserList []*UserItem `json:"user_list"`
+}

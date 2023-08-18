@@ -18,7 +18,7 @@ func New() *sFollow {
 	return &sFollow{}
 }
 
-// FavoriteAction 关注操作，根据 action_type 里决定是关注还是取消关注
+// FollowAction 关注操作，根据 action_type 里决定是关注还是取消关注
 func (*sFollow) FollowAction(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
 	if in.ActionType == "1" {
 		return AddFollow(in)
@@ -101,8 +101,11 @@ func (*sFollow) GetFollowList(in *model.GetFollowListInput) (out *model.GetFollo
 func (*sFollow) GetFollowerList(in *model.GetFollowerListInput) (out *model.GetFollowerListOutput, err error) {
 	// 获取到 UserId 的粉丝列表
 	out, err = mysql.Follow().GetFollowerList(in)
-	if err != nil {
-		return nil, err
-	}
+	return
+}
+
+// GetFriendList 获取用户好友列表
+func (*sFollow) GetFriendList(in *model.GetFriendListInput) (out *model.GetFriendListOutput, err error) {
+	out, err = mysql.Follow().GetFriendList(in)
 	return
 }

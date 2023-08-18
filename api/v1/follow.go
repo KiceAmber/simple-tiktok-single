@@ -20,7 +20,7 @@ type GetFollowListReq struct {
 	UserId int64  `json:"user_id"`
 }
 
-// GetFollowListResp 获取视频点赞列表响应
+// GetFollowListResp 获取用户关注列表响应
 type GetFollowListResp struct {
 	*consts.ResponseData
 	FollowList any `json:"user_list"`
@@ -32,8 +32,20 @@ type GetFollowerListReq struct {
 	UserId int64  `json:"user_id"`
 }
 
-// GetFollowerListResp 获取视频点赞列表响应
+// GetFollowerListResp 获取用户粉丝列表响应
 type GetFollowerListResp struct {
 	*consts.ResponseData
 	FollowList any `json:"user_list"`
+}
+
+// GetFriendListReq 获取好友列表请求
+type GetFriendListReq struct {
+	Token  string `json:"token"`
+	UserId int64  `json:"user_id"`
+}
+
+// GetFriendListResp 获取好友列表响应
+type GetFriendListResp struct {
+	*consts.ResponseData
+	FriendList any `json:"user_list"`
 }

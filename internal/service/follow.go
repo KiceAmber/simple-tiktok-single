@@ -6,6 +6,7 @@ type IFollow interface {
 	FollowAction(in *model.FollowActionInput) (out *model.FollowActionOutput, err error)
 	GetFollowList(in *model.GetFollowListInput) (out *model.GetFollowListOutput, err error)
 	GetFollowerList(in *model.GetFollowerListInput) (out *model.GetFollowerListOutput, err error)
+	GetFriendList(in *model.GetFriendListInput) (out *model.GetFriendListOutput, err error)
 }
 
 var (

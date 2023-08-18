@@ -21,37 +21,45 @@ func Init() *gin.Engine {
 	r := gin.New()
 	r.Use(logs.GinLogger(), logs.GinRecovery(true), middleware.CORSMiddleware())
 
+	douyin := r.Group("/douyin")
 	// 用户模块
 	{
-		r.POST("/douyin/user/register/", controller.UserRegister) // 用户注册
-		r.POST("/douyin/user/login/", controller.UserLogin)       // 用户登录
-		r.GET("/douyin/user/", controller.GetUserInfo)            // 获取用户信息
+		douyin.POST("/user/register/", controller.UserRegister) // 用户注册
+		douyin.POST("/user/login/", controller.UserLogin)       // 用户登录
+		douyin.GET("/user/", controller.GetUserInfo)            // 获取用户信息
 	}
 
 	// 视频模块
 	{
-		r.GET("/douyin/feed/", controller.VideoFeed)                     // 视频流
-		r.POST("/douyin/publish/action/", controller.PublishVideo)       // 发布视频投稿
-		r.GET("/douyin/publish/list/", controller.GetVideoPublishedList) // 视频发布列表
+		douyin.GET("/feed/", controller.VideoFeed)                     // 视频流
+		douyin.POST("/publish/action/", controller.PublishVideo)       // 发布视频投稿
+		douyin.GET("/publish/list/", controller.GetVideoPublishedList) // 视频发布列表
 	}
 
 	// 评论模块
 	{
-		r.POST("/douyin/comment/action/", controller.CommentAction) // 评论操作
-		r.GET("/douyin/comment/list/", controller.GetCommentList)   // 获取评论列表操作
+		douyin.POST("/comment/action/", controller.CommentAction) // 评论操作
+		douyin.GET("/comment/list/", controller.GetCommentList)   // 获取评论列表操作
 	}
 
 	// 点赞模块
 	{
-		r.POST("/douyin/favorite/action/", controller.FavoriteAction)   // 点赞操作
-		r.GET("/douyin/favorite/list/", controller.GetUserFavoriteList) // 点赞列表(喜欢列表)
+		douyin.POST("/favorite/action/", controller.FavoriteAction)   // 点赞操作
+		douyin.GET("/favorite/list/", controller.GetUserFavoriteList) // 点赞列表(喜欢列表)
 	}
 
 	// 关注模块
 	{
-		r.POST("/douyin/relation/action/", controller.FollowAction)          // 关注操作
-		r.GET("/douyin/relation/follow/list/", controller.GetFollowList)     // 关注列表
-		r.GET("/douyin/relation/follower/list/", controller.GetFollowerList) // 粉丝列表
+		douyin.POST("/relation/action/", controller.FollowAction)          // 关注操作
+		douyin.GET("/relation/follow/list/", controller.GetFollowList)     // 关注列表
+		douyin.GET("/relation/follower/list/", controller.GetFollowerList) // 粉丝列表
+		douyin.GET("/relation/friend/list/", controller.GetFriendList)     // 好友列表                                                            // 好友列表
+	}
+
+	// 聊天模块
+	{
+		douyin.POST("/message/action/", controller.MessageAction) // 发送消息操作
+		douyin.GET("/message/chat/", controller.MessageList)      // 获取消息记录
 	}
 
 	// 错误路由

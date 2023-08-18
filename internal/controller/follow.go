@@ -168,3 +168,49 @@ func GetFollowerList(ctx *gin.Context) {
 		FollowList:   out.UserList,
 	})
 }
+
+// GetFriendList 获取好友列表
+func GetFriendList(ctx *gin.Context) {
+	var req = new(v1.GetFriendListReq)
+
+	// 接收参数
+	req.Token = ctx.Query("token")
+
+	// 接收 UserId 参数
+	userId, err := strconv.ParseInt(ctx.Query("user_id"), 10, 64)
+	if err != nil {
+		zap.L().Error("GetFriendList Parse UserId Failed", zap.Error(err))
+		consts.ResponseError(ctx, v1.GetFriendListResp{
+			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+		})
+		return
+	}
+	req.UserId = userId
+
+	_, err = jwt.ParseToken(req.Token)
+	if err != nil {
+		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
+		consts.ResponseError(ctx, &v1.GetFriendListResp{
+			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+		})
+		return
+	}
+
+	// 业务处理
+	out, err := service.Follow().GetFriendList(&model.GetFriendListInput{
+		UserId: userId,
+	})
+	if err != nil {
+		zap.L().Error("service.Follow().GetFriendList Failed", zap.Error(err))
+		consts.ResponseError(ctx, v1.GetFriendListResp{
+			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+		})
+		return
+	}
+
+	// 返回响应
+	consts.ResponseError(ctx, v1.GetFriendListResp{
+		ResponseData: consts.ResponseSuccessData("查询用户好友列表成功"),
+		FriendList:   out.UserList,
+	})
+}
