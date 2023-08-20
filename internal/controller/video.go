@@ -68,25 +68,30 @@ func VideoFeed(ctx *gin.Context) {
 
 	// 接收参数，这里要注意时间问题
 	timeString := ctx.DefaultQuery("latest_time", "-1")
-	var latestTime int64
 	if timeString == "-1" || timeString == "" {
-		latestTime = time.Now().Unix()
+		latestTime := time.Now().Unix()
+		req.LatestTime = time.Unix(latestTime, 0) // 将 int64 转化为 time.Time
 	} else {
-		tempTime, err := strconv.ParseInt(timeString, 10, 64)
-		if err != nil {
-			zap.L().Error("Parse LatestTime Failed", zap.Error(err))
-			consts.ResponseError(ctx, &v1.VideoFeedResp{
-				ResponseData: consts.ResponseErrorData(consts.CodeInvalidTimeStamp),
-			})
-			return
+		if timeString == "0" {
+			// 如果等于 0 说明是刷新了视频，则要将时间戳更新为上一次视频列表的最后一个视频所处的时间戳
+			// 所以这里需要一个全局时间戳来存储上一次视频流的最后一个视频的时间戳
+			req.LatestTime = time.Unix(consts.NextTimeStamp, 0)
+		} else {
+			latestTime, err := strconv.ParseInt(timeString, 10, 64)
+			if err != nil {
+				zap.L().Error("Parse LatestTime Failed", zap.Error(err))
+				consts.ResponseError(ctx, &v1.VideoFeedResp{
+					ResponseData: consts.ResponseErrorData(consts.CodeInvalidTimeStamp),
+				})
+				return
+			}
+			if latestTime > time.Now().Unix() {
+				latestTime = time.Now().Unix()
+			}
+			req.LatestTime = time.Unix(latestTime, 0) // 将 int64 转化为 time.Time
 		}
-		if tempTime > time.Now().Unix() {
-			tempTime = time.Now().Unix()
-		}
-		latestTime = tempTime
 	}
 
-	req.LatestTime = time.Unix(latestTime, 0) // 将 int64 转化为 time.Time
 	req.Token = ctx.DefaultQuery("token", "")
 	if req.Token != "" {
 		// 解析 Token，检测 Token 是否合法
@@ -115,6 +120,7 @@ func VideoFeed(ctx *gin.Context) {
 	}
 
 	// 返回响应
+	consts.NextTimeStamp = out.NextTime
 	consts.ResponseSuccess(ctx, &v1.VideoFeedResp{
 		ResponseData: consts.ResponseSuccessData("获取视频流成功"),
 		NextTime:     out.NextTime,

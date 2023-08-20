@@ -157,7 +157,7 @@ func (*sVideo) GetVideoFeed(in *model.VideoFeedInput) (out *model.VideoFeedOutpu
 		return nil, err
 	}
 	// 将 NextTime 设置为视频列表中发布最早的视频时间
-	out.NextTime = out.VideoList[len(out.VideoList)-1].CreatedAt
+	out.NextTime = out.VideoList[len(out.VideoList)-1].CreatedAt.Unix()
 
 	// 查询 redis，查看用户是否点赞视频，如果 in.UserId == -1 则说明为未登录用户，点赞默认为 false
 	if in.UserId != -1 {

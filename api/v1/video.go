@@ -27,8 +27,8 @@ type VideoFeedReq struct {
 // VideoFeedResp 视频流响应
 type VideoFeedResp struct {
 	*consts.ResponseData
-	NextTime  time.Time `json:"next_time"`
-	VideoList any       `json:"video_list"`
+	NextTime  int64 `json:"next_time"`
+	VideoList any   `json:"video_list"`
 }
 
 // GetVidePublishedListReq 视频发布列表请求

@@ -3,6 +3,10 @@ package redis
 import (
 	"context"
 	"fmt"
+	"go.uber.org/zap"
+	"simple_tiktok_rime/internal/dao/mysql"
+	"simple_tiktok_rime/internal/model"
+	"strconv"
 )
 
 type dFavorite struct {
@@ -47,4 +51,43 @@ func (*dFavorite) UserFavoriteActionToVideo(actionType string, userId int64, vid
 	} else {
 		return rdb.SRem(context.Background(), userVideoKey, videoId).Err()
 	}
+}
+
+// GetFavoriteList 获取点赞(喜欢)列表
+func (*dFavorite) GetFavoriteList(in *model.GetFavoriteVideoListInput) (*model.GetFavoriteVideoListOutput, error) {
+
+	var out = &model.GetFavoriteVideoListOutput{
+		FavoriteList: nil,
+		VideoList:    []*model.VideoItem{},
+	}
+
+	videoIdList, err := rdb.SMembers(context.Background(), fmt.Sprintf("user:%d:favorite_video", in.UserId)).Result()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, videoIdString := range videoIdList {
+		videoId, err := strconv.ParseInt(videoIdString, 10, 64)
+		if err != nil {
+			zap.L().Error("Redis.Favorite().GetFavoriteList Failed", zap.Error(err))
+			continue
+		}
+		video, err := mysql.Video().GetVideoInfoByVideoId(videoId)
+		if err != nil {
+			zap.L().Error("mysql.Video().GetVideoInfoByVideoId() Failed", zap.Error(err))
+			continue
+		}
+		out.VideoList = append(out.VideoList, &model.VideoItem{
+			Id:            video.Id,
+			AuthorId:      video.AuthorId,
+			FavoriteCount: video.FavoriteCount,
+			CommentCount:  video.CommentCount,
+			Title:         video.Title,
+			PlayUrl:       video.PlayUrl,
+			CoverUrl:      video.CoverUrl,
+			IsFavorite:    video.IsFavorite,
+			CreatedAt:     video.CreatedAt,
+		})
+	}
+	return out, nil
 }

@@ -104,15 +104,15 @@ func (*dVideo) GetVideoPublishedList(in *model.GetVideoPublishedListInput) (*mod
 	return out, nil
 }
 
-// GetVideoListByVideoId 根据视频ID获取视频列表
-func (*dVideo) GetVideoListByVideoId(videoId int64) ([]*entity.Video, error) {
+// GetVideoInfoByVideoId 根据视频ID获取视频信息
+func (*dVideo) GetVideoInfoByVideoId(videoId int64) (*entity.Video, error) {
 
-	var videoList = []*entity.Video{}
+	var video = &entity.Video{}
 
-	result := engine.Where("id = ?", videoId).Find(&videoList)
+	result := engine.Where("id = ?", videoId).Find(video)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return videoList, nil
+	return video, nil
 }

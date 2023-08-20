@@ -39,12 +39,12 @@ const (
 
 // 封装错误码
 var (
-	ErrInvalidVideoExt      = errors.New("无效的视频扩展名")
-	ErrUserNotExists        = errors.New("用户不存在")
-	ErrUserExists           = errors.New("用户已存在")
-	ErrUserFavoritedVideo   = errors.New("用户已对该视频点赞")
-	ErrUserNotFavoriteVideo = errors.New("用户未对该视频点赞")
-	ErrUserFollowedTargetUser   = errors.New("已关注该用户")
+	ErrInvalidVideoExt         = errors.New("无效的视频扩展名")
+	ErrUserNotExists           = errors.New("用户不存在")
+	ErrUserExists              = errors.New("用户已存在")
+	ErrUserFavoritedVideo      = errors.New("用户已对该视频点赞")
+	ErrUserNotFavoriteVideo    = errors.New("用户未对该视频点赞")
+	ErrUserFollowedTargetUser  = errors.New("已关注该用户")
 	ErrUserNotFollowTargetUser = errors.New("未关注该用户")
 )
 
@@ -54,3 +54,5 @@ const (
 	DefaultAvatar          = "http://ryr42bm4i.hn-bkt.clouddn.com/avatar.png" // 默认的头像图片
 	DefaultSignature       = "这个人很懒，什么都没有填写"                                  // 默认的个人简介
 )
+
+var NextTimeStamp int64 = 0 // 上一个视频流最后一个视频的时间戳

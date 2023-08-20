@@ -27,7 +27,7 @@ type VideoFeedInput struct {
 
 // VideoFeedOutput 视频流 output
 type VideoFeedOutput struct {
-	NextTime  time.Time    `json:"next_time"`
+	NextTime  int64        `json:"next_time"`
 	VideoList []*VideoItem `json:"video_list"`
 }
 
