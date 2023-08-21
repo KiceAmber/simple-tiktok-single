@@ -22,8 +22,10 @@ type GetFollowListReq struct {
 
 // GetFollowListResp 获取用户关注列表响应
 type GetFollowListResp struct {
-	*consts.ResponseData
-	FollowList any `json:"user_list"`
+	//*consts.ResponseData
+	StatusCode string `json:"status_code"`
+	StatusMsg  string `json:"status_msg"`
+	FollowList any    `json:"user_list"`
 }
 
 // GetFollowerListReq 获取用户粉丝列表请求
@@ -34,8 +36,10 @@ type GetFollowerListReq struct {
 
 // GetFollowerListResp 获取用户粉丝列表响应
 type GetFollowerListResp struct {
-	*consts.ResponseData
-	FollowList any `json:"user_list"`
+	//*consts.ResponseData
+	StatusCode string `json:"status_code"`
+	StatusMsg  string `json:"status_msg"`
+	FollowList any    `json:"user_list"`
 }
 
 // GetFriendListReq 获取好友列表请求
@@ -46,6 +50,8 @@ type GetFriendListReq struct {
 
 // GetFriendListResp 获取好友列表响应
 type GetFriendListResp struct {
-	*consts.ResponseData
-	FriendList any `json:"user_list"`
+	//*consts.ResponseData
+	StatusCode string `json:"status_code"`
+	StatusMsg  string `json:"status_msg"`
+	FriendList any    `json:"user_list"`
 }

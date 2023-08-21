@@ -14,7 +14,7 @@ var (
 	once = sync.Once{}
 )
 
-func New() *redis.Client{ 
+func New() *redis.Client {
 	return rdb
 }
 

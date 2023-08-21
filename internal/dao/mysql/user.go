@@ -6,6 +6,7 @@ import (
 	"simple_tiktok_rime/internal/consts"
 	"simple_tiktok_rime/internal/model"
 	"simple_tiktok_rime/internal/model/entity"
+	"simple_tiktok_rime/pkg/toolx"
 	"strings"
 )
 
@@ -103,9 +104,9 @@ func (*dUser) QueryUserById(in *model.GetUserInfoInput) (*model.GetUserInfoOutpu
 			Id:              user.Id,
 			FollowCount:     user.FollowCount,
 			FollowerCount:   user.FollowerCount,
-			TotalFavorited:  user.TotalFavorited,
 			WorkCount:       user.WorkCount,
 			FavoriteCount:   user.FavoriteCount,
+			TotalFavorited:  toolx.ConvertUnit(user.TotalFavorited),
 			Name:            user.Name,
 			Avatar:          user.Avatar,
 			BackgroundImage: user.BackgroundImage,

@@ -22,6 +22,8 @@ type GetFavoriteVideoListReq struct {
 
 // GetFavoriteVideoListResp 获取视频点赞列表响应
 type GetFavoriteVideoListResp struct {
-	*consts.ResponseData
-	VideoList any `json:"video_list"`
+	//*consts.ResponseData
+	StatusCode string `json:"status_code"`
+	StatusMsg  string `json:"status_msg"`
+	VideoList  any    `json:"video_list"`
 }

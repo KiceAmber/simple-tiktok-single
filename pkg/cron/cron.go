@@ -36,7 +36,7 @@ func Init() error {
 	return nil
 }
 
-// 40 秒定时任务执行的操作
+// CronTabBy40S 40 秒定时任务执行的操作
 func CronTabBy40S() {
 	if err := syncFavoriteCountForVideo(); err != nil {
 		zap.L().Error("syncFavoriteCountForVideo Failed", zap.Error(err))
@@ -61,7 +61,7 @@ func CronTabBy40S() {
 	}
 }
 
-// 1 分钟定时任务执行的操作
+// CronTabBy1M 1 分钟定时任务执行的操作
 func CronTabBy1M() {
 	if err := syncUserTotalFavoriteCount(); err != nil {
 		zap.L().Error("syncUserTotalFavoriteCount failed", zap.Error(err))

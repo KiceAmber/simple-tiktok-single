@@ -23,6 +23,8 @@ type GetMessageListReq struct {
 
 // GetMessageListResp 获取消息列表响应
 type GetMessageListResp struct {
-	*consts.ResponseData
-	MessageList any `json:"message_list"`
+	//*consts.ResponseData
+	StatusCode  string `json:"status_code"`
+	StatusMsg   string `json:"status_msg"`
+	MessageList any    `json:"message_list"`
 }

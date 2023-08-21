@@ -30,7 +30,7 @@ var codeMsg = map[RespCode]string{
 	CodeUserNotFavoriteVideo: "用户未对该视频点赞",
 
 	// 关注 Code
-	CodeUserFollowedTargetUser: "已对关注用户",
+	CodeUserFollowedTargetUser:  "已关注该用户",
 	CodeUserNotFollowTargetUser: "未关注该用户",
 }
 

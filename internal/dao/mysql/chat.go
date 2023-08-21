@@ -53,7 +53,7 @@ func (*dChat) QueryMessageList(in *model.GetMessageListInput) (*model.GetMessage
 			FromUserId: message.UserId,
 			ToUserId:   message.ToUserId,
 			Content:    message.Content,
-			CreateTime: message.CreatedAt,
+			CreateTime: message.CreatedAt.Unix(),
 		}
 		out.MessageList = append(out.MessageList, messageItem)
 	}

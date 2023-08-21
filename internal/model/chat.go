@@ -1,9 +1,5 @@
 package model
 
-import (
-	"time"
-)
-
 // MessageActionInput 消息操作 Input
 type MessageActionInput struct {
 	Id         int64  `json:"id"`
@@ -30,9 +26,9 @@ type GetMessageListOutput struct {
 
 // MessageItem 消息单项
 type MessageItem struct {
-	Id         int64     `json:"id"`
-	FromUserId int64     `json:"from_user_id"`
-	ToUserId   int64     `json:"to_user_id"`
-	Content    string    `json:"content"`
-	CreateTime time.Time `json:"create_time"`
+	Id         int64  `json:"id"`
+	FromUserId int64  `json:"from_user_id"`
+	ToUserId   int64  `json:"to_user_id"`
+	CreateTime int64  `json:"create_time"`
+	Content    string `json:"content"`
 }

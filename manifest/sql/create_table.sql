@@ -90,11 +90,11 @@ create table `follow` (
 -- --------------------------
 drop table if exists `chat`;
 create table `chat` (
-      `id` bigint not null primary key comment '关注ID, 雪花算法生成',
-      `user_id` bigint not null comment '发消息的用户ID',
-      `to_user_id` bigint not null comment '接收消息的用户ID',
-      `content` varchar(256) not null default '' comment '消息内容',
-      `created_at` timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
-      `updated_at` timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '修改时间',
-      `deleted_at` timestamp default null comment '删除时间'
+    `id` bigint not null primary key comment '消息ID, 雪花算法生成',
+    `user_id` bigint not null comment '发消息的用户ID',
+    `to_user_id` bigint not null comment '接收消息的用户ID',
+    `content` varchar(256) not null default '' comment '消息内容',
+    `created_at` timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+    `updated_at` timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '修改时间',
+    `deleted_at` timestamp default null comment '删除时间'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;

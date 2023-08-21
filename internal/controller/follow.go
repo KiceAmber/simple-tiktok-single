@@ -89,7 +89,9 @@ func GetFollowList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("GetFollowList Parse UserId Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFollowListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			StatusCode: "1001",
+			StatusMsg:  "无法解析 UserId 参数",
 		})
 		return
 	}
@@ -99,7 +101,9 @@ func GetFollowList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
 		consts.ResponseError(ctx, &v1.GetFollowListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			StatusCode: "1002",
+			StatusMsg:  "无效 token",
 		})
 		return
 	}
@@ -111,15 +115,19 @@ func GetFollowList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("service.Follow().GetFollowList Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFollowListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			//ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			StatusCode: "1003",
+			StatusMsg:  "服务繁忙",
 		})
 		return
 	}
 
 	// 返回响应
 	consts.ResponseError(ctx, v1.GetFollowListResp{
-		ResponseData: consts.ResponseSuccessData("查询用户关注列表成功"),
-		FollowList:   out.UserList,
+		//ResponseData: consts.ResponseSuccessData("查询用户关注列表成功"),
+		StatusCode: "0",
+		StatusMsg:  "查询用户关注列表成功",
+		FollowList: out.UserList,
 	})
 }
 
@@ -135,7 +143,9 @@ func GetFollowerList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("GetFollowerList Parse UserId Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFollowerListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			StatusCode: "1001",
+			StatusMsg:  "解析 UserId 失败，无效参数",
 		})
 		return
 	}
@@ -145,7 +155,9 @@ func GetFollowerList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
 		consts.ResponseError(ctx, &v1.GetFollowerListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			StatusCode: "1002",
+			StatusMsg:  "无效token",
 		})
 		return
 	}
@@ -157,15 +169,19 @@ func GetFollowerList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("service.Follow().GetFollowList Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFollowerListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			//ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			StatusCode: "1003",
+			StatusMsg:  "服务繁忙",
 		})
 		return
 	}
 
 	// 返回响应
 	consts.ResponseError(ctx, v1.GetFollowerListResp{
-		ResponseData: consts.ResponseSuccessData("查询用户粉丝列表成功"),
-		FollowList:   out.UserList,
+		//ResponseData: consts.ResponseSuccessData("查询用户粉丝列表成功"),
+		StatusCode: "0",
+		StatusMsg:  "查询用户粉丝列表成功",
+		FollowList: out.UserList,
 	})
 }
 
@@ -181,7 +197,9 @@ func GetFriendList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("GetFriendList Parse UserId Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFriendListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			StatusCode: "1001",
+			StatusMsg:  "解析参数失败，无效参数",
 		})
 		return
 	}
@@ -191,7 +209,9 @@ func GetFriendList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
 		consts.ResponseError(ctx, &v1.GetFriendListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			StatusCode: "1002",
+			StatusMsg:  "无效 token",
 		})
 		return
 	}
@@ -203,14 +223,18 @@ func GetFriendList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("service.Follow().GetFriendList Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFriendListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			//ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			StatusCode: "1003",
+			StatusMsg:  "服务繁忙",
 		})
 		return
 	}
 
 	// 返回响应
 	consts.ResponseError(ctx, v1.GetFriendListResp{
-		ResponseData: consts.ResponseSuccessData("查询用户好友列表成功"),
-		FriendList:   out.UserList,
+		//ResponseData: consts.ResponseSuccessData("查询用户好友列表成功"),
+		StatusCode: "0",
+		StatusMsg:  "查询用户好友列表成功",
+		FriendList: out.UserList,
 	})
 }

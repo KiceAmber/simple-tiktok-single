@@ -72,7 +72,9 @@ func MessageList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("MessageList strconv.ParseInt Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetMessageListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			StatusCode: "1001",
+			StatusMsg:  "无效参数",
 		})
 		return
 	}
@@ -82,8 +84,10 @@ func MessageList(ctx *gin.Context) {
 	myClaims, err := jwt.ParseToken(req.Token)
 	if err != nil {
 		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
-		consts.ResponseError(ctx, &v1.MessageActionResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+		consts.ResponseError(ctx, &v1.GetMessageListResp{
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			StatusCode: "1002",
+			StatusMsg:  "无效token",
 		})
 		return
 	}
@@ -96,14 +100,18 @@ func MessageList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("MessageList strconv.ParseINt Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetMessageListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			//ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			StatusCode: "1003",
+			StatusMsg:  "服务繁忙",
 		})
 		return
 	}
 
 	// 返回响应
 	consts.ResponseSuccess(ctx, v1.GetMessageListResp{
-		ResponseData: consts.ResponseSuccessData("获取消息列表成功"),
-		MessageList:  out,
+		//ResponseData: consts.ResponseSuccessData("获取消息列表成功"),
+		StatusCode:  "0",
+		StatusMsg:   "获取消息列表成功",
+		MessageList: out.MessageList,
 	})
 }

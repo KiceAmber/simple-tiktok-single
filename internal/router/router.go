@@ -71,7 +71,6 @@ func Init() *gin.Engine {
 
 	return r
 }
-
 func Setup(r *gin.Engine) {
 	// 启动服务(优雅关机)
 	srv := &http.Server{

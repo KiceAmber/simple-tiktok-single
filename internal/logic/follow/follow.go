@@ -21,14 +21,14 @@ func New() *sFollow {
 // FollowAction 关注操作，根据 action_type 里决定是关注还是取消关注
 func (*sFollow) FollowAction(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
 	if in.ActionType == "1" {
-		return addFollow(in)
+		return AddFollow(in)
 	} else {
-		return cancelFollow(in)
+		return CancelFollow(in)
 	}
 }
 
-// addFollow 关注操作
-func addFollow(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
+// AddFollow 关注操作
+func AddFollow(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
 
 	// 首先判断是否已经关注 ToUserId 用户
 	exists, err := redis.Follow().IsUserFollow(in.UserId, in.ToUserId)
@@ -56,8 +56,8 @@ func addFollow(in *model.FollowActionInput) (out *model.FollowActionOutput, err 
 	return
 }
 
-// cancelFollow 取消关注
-func cancelFollow(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
+// CancelFollow 取消关注
+func CancelFollow(in *model.FollowActionInput) (out *model.FollowActionOutput, err error) {
 
 	// 判断是否已经对该用户关注
 	exists, err := redis.Follow().IsUserFollow(in.UserId, in.ToUserId)

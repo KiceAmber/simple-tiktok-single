@@ -89,7 +89,9 @@ func GetUserFavoriteList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("GetUserFavoriteList Parse UserId Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFavoriteVideoListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidParam),
+			StatusCode: "1001",
+			StatusMsg:  "解析 UserId 失败，无效参数",
 		})
 		return
 	}
@@ -99,7 +101,9 @@ func GetUserFavoriteList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("jwt.ParseToken Failed", zap.Error(err))
 		consts.ResponseError(ctx, &v1.GetFavoriteVideoListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			//ResponseData: consts.ResponseErrorData(consts.CodeInvalidToken),
+			StatusCode: "1002",
+			StatusMsg:  "无效 token",
 		})
 		return
 	}
@@ -111,14 +115,17 @@ func GetUserFavoriteList(ctx *gin.Context) {
 	if err != nil {
 		zap.L().Error("service.Favorite().GetFavoriteVideoList Failed", zap.Error(err))
 		consts.ResponseError(ctx, v1.GetFavoriteVideoListResp{
-			ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			//ResponseData: consts.ResponseErrorData(consts.CodeServerBusy),
+			StatusCode: "0",
+			StatusMsg:  "查询用户点赞视频列表成功",
 		})
 		return
 	}
 
 	// 返回响应
 	consts.ResponseError(ctx, v1.GetFavoriteVideoListResp{
-		ResponseData: consts.ResponseSuccessData("查询用户点赞视频列表成功"),
-		VideoList:    out.VideoList,
+		StatusCode: "0",
+		StatusMsg:  "查询用户点赞视频列表成功",
+		VideoList:  out.VideoList,
 	})
 }

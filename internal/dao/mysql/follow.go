@@ -4,6 +4,7 @@ import (
 	"go.uber.org/zap"
 	"simple_tiktok_rime/internal/model"
 	"simple_tiktok_rime/internal/model/entity"
+	"simple_tiktok_rime/pkg/toolx"
 )
 
 type dFollow struct {
@@ -48,7 +49,7 @@ func (*dFollow) GetFollowList(in *model.GetFollowListInput) (*model.GetFollowLis
 			Id:              user.Id,
 			FollowCount:     user.FollowerCount,
 			FollowerCount:   user.FollowerCount,
-			TotalFavorited:  user.TotalFavorited,
+			TotalFavorited:  toolx.ConvertUnit(user.TotalFavorited),
 			WorkCount:       user.WorkCount,
 			FavoriteCount:   user.FavoriteCount,
 			Name:            user.Name,
@@ -88,7 +89,7 @@ func (*dFollow) GetFollowerList(in *model.GetFollowerListInput) (*model.GetFollo
 			Id:              user.Id,
 			FollowCount:     user.FollowerCount,
 			FollowerCount:   user.FollowerCount,
-			TotalFavorited:  user.TotalFavorited,
+			TotalFavorited:  toolx.ConvertUnit(user.TotalFavorited),
 			WorkCount:       user.WorkCount,
 			FavoriteCount:   user.FavoriteCount,
 			Name:            user.Name,
@@ -121,7 +122,7 @@ func (*dFollow) GetFriendList(in *model.GetFriendListInput) (*model.GetFriendLis
 			Id:              friend.Id,
 			FollowCount:     friend.FollowCount,
 			FollowerCount:   friend.FollowerCount,
-			TotalFavorited:  friend.TotalFavorited,
+			TotalFavorited:  toolx.ConvertUnit(friend.TotalFavorited),
 			WorkCount:       friend.WorkCount,
 			FavoriteCount:   friend.FavoriteCount,
 			Name:            friend.Name,
