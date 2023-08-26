@@ -18,26 +18,26 @@ import (
 // Init 初始化定时任务
 func Init() error {
 	// 初始化两个定时器，一个40秒为间隔，一个1分钟为间隔
-	crontabBy40S := cron.New(cron.WithSeconds())
-	if _, err := crontabBy40S.AddFunc("*/40 * * * * ?", CronTabBy40S); err != nil {
+	crontabBy5S := cron.New(cron.WithSeconds())
+	if _, err := crontabBy5S.AddFunc("*/40 * * * * ?", CronTabBy5S); err != nil {
 		zap.L().Error("crontabBy40S.AddFunc Failed", zap.Error(err))
 		return err
 	}
 
-	cronTabBy1M := cron.New()
-	if _, err := cronTabBy1M.AddFunc("*/1 * * * ?", CronTabBy1M); err != nil {
+	cronTabBy8S := cron.New()
+	if _, err := cronTabBy8S.AddFunc("*/1 * * * ?", CronTabBy8S); err != nil {
 		zap.L().Error("cronTabBy1M.AddFunc Failed", zap.Error(err))
 		return err
 	}
 
-	crontabBy40S.Start()
-	cronTabBy1M.Start()
+	go crontabBy5S.Start()
+	go cronTabBy8S.Start()
 
 	return nil
 }
 
-// CronTabBy40S 40 秒定时任务执行的操作
-func CronTabBy40S() {
+// CronTabBy5S 5 秒定时任务执行的操作
+func CronTabBy5S() {
 	if err := syncFavoriteCountForVideo(); err != nil {
 		zap.L().Error("syncFavoriteCountForVideo Failed", zap.Error(err))
 		return
@@ -61,8 +61,8 @@ func CronTabBy40S() {
 	}
 }
 
-// CronTabBy1M 1 分钟定时任务执行的操作
-func CronTabBy1M() {
+// CronTabBy8S 1 分钟定时任务执行的操作
+func CronTabBy8S() {
 	if err := syncUserTotalFavoriteCount(); err != nil {
 		zap.L().Error("syncUserTotalFavoriteCount failed", zap.Error(err))
 		return

@@ -12,7 +12,14 @@ import (
 	"strconv"
 )
 
-// UserRegister 用户注册
+// UserRegister 用户注册接口
+// @Summary 用于用户注册的接口
+// @Description 接收用户名以及用户密码即可注册新用户
+// @Tags 用户相关接口
+// @Param ?username query string true "User register name"
+// @Param ?password query string true "User register password"
+// @Success 200 {object} v1.UserRegisterResp
+// @Route /douyin/user/register/
 func UserRegister(ctx *gin.Context) {
 	var req = new(v1.UserRegisterReq)
 
@@ -48,6 +55,13 @@ func UserRegister(ctx *gin.Context) {
 }
 
 // UserLogin 用户登录
+// @Summary 用于用户登录的接口
+// @Description 接收用户名以及用户密码即可登录
+// @Tags 用户相关接口
+// @Param ?username query string true "User register name"
+// @Param ?password query string true "User register password"
+// @Success 200 {object} v1.UserLoginResp
+// @Route /douyin/user/login/
 func UserLogin(ctx *gin.Context) {
 	var req = new(v1.UserLoginReq)
 
@@ -82,6 +96,14 @@ func UserLogin(ctx *gin.Context) {
 }
 
 // GetUserInfo 获取用户主页个人信息
+// @Summary 获取到用户的个人主页信息
+// @Description 获取到用户的个人主页信息，包含用户名、头像、个人简介等等信息
+// @Tags 用户相关接口
+// @Param ?user_id query string true "User register name"
+// @Param Authorization header string true "Bearer 用户令牌"
+// @Security ApiKeyAuth
+// @Success 200 {object} v1.GetUserInfoResp
+// @Route /douyin/user/
 func GetUserInfo(ctx *gin.Context) {
 
 	var req = new(v1.GetUserInfoReq)

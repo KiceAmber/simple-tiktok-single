@@ -3,6 +3,8 @@ package router
 import (
 	"context"
 	"fmt"
+	swaggerFiles "github.com/swaggo/files"
+	gs "github.com/swaggo/gin-swagger"
 	"net/http"
 	"os"
 	"os/signal"
@@ -13,6 +15,8 @@ import (
 	"syscall"
 	"time"
 
+	_ "simple_tiktok_rime/docs"
+
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
@@ -20,6 +24,8 @@ import (
 func Init() *gin.Engine {
 	r := gin.New()
 	r.Use(logs.GinLogger(), logs.GinRecovery(true), middleware.CORSMiddleware())
+
+	r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 
 	douyin := r.Group("/douyin")
 	// 用户模块

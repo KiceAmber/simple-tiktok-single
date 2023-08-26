@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {},
+    "definitions": {
+        "consts.RespCode": {
+            "type": "integer",
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+            ],
+            "x-enum-varnames": [
+                "CodeSuccess",
+                "CodeServerBusy",
+                "CodeInvalidParam",
+                "CodeNeedLogin",
+                "CodeInvalidToken",
+                "CodeUserExists",
+                "CodeLoginFailed",
+                "CodeInvalidFileHeader",
+                "CodeInvalidTimeStamp",
+                "CodeUserFavoritedVideo",
+                "CodeUserNotFavoriteVideo",
+                "CodeUserFollowedTargetUser",
+                "CodeUserNotFollowTargetUser"
+            ]
+        },
+        "v1.GetUserInfoResp": {
+            "type": "object",
+            "properties": {
+                "status_code": {
+                    "$ref": "#/definitions/consts.RespCode"
+                },
+                "status_msg": {
+                    "type": "string"
+                },
+                "user": {}
+            }
+        },
+        "v1.UserLoginResp": {
+            "type": "object",
+            "properties": {
+                "status_code": {
+                    "$ref": "#/definitions/consts.RespCode"
+                },
+                "status_msg": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "v1.UserRegisterResp": {
+            "type": "object",
+            "properties": {
+                "status_code": {
+                    "$ref": "#/definitions/consts.RespCode"
+                },
+                "status_msg": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

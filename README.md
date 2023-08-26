@@ -35,14 +35,3 @@
 - 跨域处理：`go get github.com/gin-contrib/cors`
 - 定时任务：`go get github.com/robfig/cron/v3`
 
-# 整体开发流程
-
-1. 编写 api 层，定义接口
-2. 编写 model 层，定义持久层要操作的数据结构
-   - 在 entity 包下定义表结构映射的实体，
-3. 编写 dao 层，实现底层数据的增删改查
-4. 编写 service 层和 logic 层，用于定义业务操作函数
-   - 在 logic.go 中引入包，让 logic 的 init 包初始化，否则无法实现依赖注入
-5. 编写 controller 层 
-6. 编写 router 层，定义路由
-

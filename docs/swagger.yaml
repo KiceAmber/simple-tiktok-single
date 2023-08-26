@@ -1,0 +1,65 @@
+definitions:
+  consts.RespCode:
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    type: integer
+    x-enum-varnames:
+    - CodeSuccess
+    - CodeServerBusy
+    - CodeInvalidParam
+    - CodeNeedLogin
+    - CodeInvalidToken
+    - CodeUserExists
+    - CodeLoginFailed
+    - CodeInvalidFileHeader
+    - CodeInvalidTimeStamp
+    - CodeUserFavoritedVideo
+    - CodeUserNotFavoriteVideo
+    - CodeUserFollowedTargetUser
+    - CodeUserNotFollowTargetUser
+  v1.GetUserInfoResp:
+    properties:
+      status_code:
+        $ref: '#/definitions/consts.RespCode'
+      status_msg:
+        type: string
+      user: {}
+    type: object
+  v1.UserLoginResp:
+    properties:
+      status_code:
+        $ref: '#/definitions/consts.RespCode'
+      status_msg:
+        type: string
+      token:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  v1.UserRegisterResp:
+    properties:
+      status_code:
+        $ref: '#/definitions/consts.RespCode'
+      status_msg:
+        type: string
+      token:
+        type: string
+      user_id:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths: {}
+swagger: "2.0"
