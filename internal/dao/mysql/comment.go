@@ -54,7 +54,7 @@ func (*dComment) InsertCommentInfo(in *model.CommentActionInput) (*model.Comment
 		CommentItem: &model.CommentItem{
 			Id:         in.CommentId,
 			Content:    in.Content,
-			CreateDate: newComment.CreatedAt,
+			CreateDate: newComment.CreatedAt.Format("2006-01-02 15:04:05"),
 		},
 	}, nil
 }
@@ -96,7 +96,7 @@ func (*dComment) QueryCommentList(in *model.GetCommentListInput) (*model.GetComm
 			Id:         comment.Id,
 			UserId:     comment.AuthorId,
 			Content:    comment.Content,
-			CreateDate: comment.CreatedAt,
+			CreateDate: comment.CreatedAt.Format("2006-01-02 15:04:05"),
 		}
 		out.CommentList = append(out.CommentList, temp)
 	}

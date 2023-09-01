@@ -1,7 +1,5 @@
 package model
 
-import "time"
-
 // CommentActionInput 评论操作 Input
 type CommentActionInput struct {
 	ActionType string `json:"action_type"`
@@ -21,7 +19,7 @@ type CommentItem struct {
 	UserId     int64     `json:"-"`
 	Content    string    `json:"content"`
 	User       *UserItem `json:"user"`
-	CreateDate time.Time `json:"create_date"`
+	CreateDate string    `json:"create_date"`
 }
 
 // GetCommentListInput 显示评论列表 Input
