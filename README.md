@@ -1,6 +1,15 @@
 # 项目技术栈
 
-> gin + gorm + mysql + redis
+> gin + gorm + mysql + redis + docker + docker-compose
+
+# 运行项目
+
+> 项目运行前，请确保 docker 以及 docker-compose 环境已经安装
+
+```shell
+$ cd simple-tiktok-single # 进入项目根目录下
+$ ./start-service.sh # 启动运行脚本
+```
 
 # 项目结构说明
 
@@ -34,4 +43,3 @@
 - 七牛云的 GO-SDK：`go get github.com/qiniu/go-sdk/v7`
 - 跨域处理：`go get github.com/gin-contrib/cors`
 - 定时任务：`go get github.com/robfig/cron/v3`
-

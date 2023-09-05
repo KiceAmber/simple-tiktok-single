@@ -1,30 +1,37 @@
-# 设置基础镜像
-FROM golang:alpine AS build
+# 设置基础镜像，用于编译代码
+FROM golang:alpine AS builder
 
-# 设置拉取依赖的镜像源
-RUN go env -w GOPROXY=https://goproxy.cn,direct
+# 为镜像设置必要的环境变量
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64 \
+    GOPROXY=https://goproxy.cn,direct
 
-# 将项目下的所有文件放到 /src 目录下
-COPY . /src
+WORKDIR /build
 
-# 进入 src 目录后编译项目生成可执行文件
-RUN cd /src && go build -o myapp
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
 
-FROM debian:stretch-slim
+COPY . .
 
-# 设置工作目录
-WORKDIR /app
+RUN go build -o myapp .
 
-# 将二进制文件复制到工作目录 app 下
-COPY --from=build /src/myapp /app/
-COPY --from=build /src/manifest/ /app/manifest
-COPY --from=build /src/wait-for.sh /app/
+# 新建一个新的小镜像用于运行服务
+FROM debian:buster-slim
 
-RUN apt-get update; \
+COPY ./wait-for.sh /
+COPY ./manifest/ /manifest
+
+COPY --from=builder /build/myapp /
+
+RUN set -eux; \
+    apt-get update; \
     apt-get install -y \
         --no-install-recommends \
         netcat; \
-        chmod 755 /app/wait-for.sh
+        chmod 755 wait-for.sh
 
 EXPOSE 8989
 

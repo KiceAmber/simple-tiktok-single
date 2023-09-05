@@ -1,11 +1,10 @@
-# create database `simple_tiktok`;
+create database if not exists `simple_tiktok`;
 
-# use `simple_tiktok`;
+use `simple_tiktok`;
 
 -- -------------------------
 -- Table structure for user
 -- -------------------------
-drop table if exists `user`;
 create table `user` (
     `id` bigint not null primary key comment '用户ID, 雪花算法生成', 
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci not null default '' comment '用户名称, 可自定义',
@@ -28,7 +27,6 @@ create table `user` (
 -- -------------------------
 -- Table structure for video
 -- -------------------------
-drop table if exists `video`;
 create table `video` (
     `id` bigint not null primary key comment '视频ID, 雪花算法生成',
     `title` varchar(64) not null default '' comment '视频标题',
@@ -47,7 +45,6 @@ create table `video` (
 -- -------------------------
 -- Table structure for favorite
 -- -------------------------
-drop table if exists `favorite`;
 create table `favorite` (
     `id` bigint not null primary key comment '点赞ID, 雪花算法生成',
     `user_id` bigint not null comment '用户ID, 是谁点了赞',
@@ -60,7 +57,6 @@ create table `favorite` (
 -- ----------------------------
 -- Table structure for comment
 -- ----------------------------
-drop table if exists `comment`;
 create table `comment` (
     `id` bigint not null primary key comment '评论ID, 雪花算法生成',
     `content` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci not null default '' comment '评论内容',
@@ -74,7 +70,6 @@ create table `comment` (
 -- --------------------------
 -- Table structure for follow
 -- --------------------------
-drop table if exists `follow`;
 create table `follow` (
     `id` bigint not null primary key comment '关注ID, 雪花算法生成',
     `user_id` bigint not null comment '被关注人的ID',
@@ -88,7 +83,6 @@ create table `follow` (
 -- --------------------------
 -- Table structure for chat
 -- --------------------------
-drop table if exists `chat`;
 create table `chat` (
     `id` bigint not null primary key comment '消息ID, 雪花算法生成',
     `user_id` bigint not null comment '发消息的用户ID',

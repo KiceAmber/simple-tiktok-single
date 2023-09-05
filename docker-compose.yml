@@ -4,20 +4,23 @@ services:
     image: "mysql:8.0.19"
     ports:
       - "13306:3306"
-    command: "--default-authentication-plugin=mysql_native_password --init-file /app/manifest/sql/create_table.sql"
+    command: "--default-authentication-plugin=mysql_native_password --init-file /data/application/create_table.sql"
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "simple_tiktok"
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=simple_tiktok
     volumes:
-      - ./manifest/sql/create_table.sql:/app/manifest/sql/create_table.sql
+      - ./manifest/sql/create_table.sql:/data/application/create_table.sql
+    security_opt:
+      - seccomp:unconfined # 忽略安全验证
   redis507:
     image: "redis:5.0.7"
     ports:
       - "16379:6379"
   app:
+    # 根据同目录下的 Dockerfile 文件构建服务镜像
     build: .
-    # command: "./wait-for.sh mysql8018:3306 redis507:6379 -- ./myapp"
-    command: "./myapp"
+    # wait-for.sh 脚本用于延迟启动，等待 mysql 和 redis 启动后再启动服务
+    command: sh -c "./wait-for.sh mysql8019:3306 redis507:6379 -- ./myapp"
     ports:
       - "8989:8989"
     depends_on:

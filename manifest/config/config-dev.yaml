@@ -1,5 +1,5 @@
-name: "simple_tiktok"
-mode: "prod"
+name: "simple_tiktok_single"
+mode: "dev"
 port: 8989
 version: "v0.1.1"
 
@@ -12,8 +12,10 @@ log:
 
 # mysql配置
 mysql:
-  host: "mysql8019"
+  host: "127.0.0.1"
   port: 3306
+#  host: "120.77.176.211"
+#  port: 53306
   user: "root"
   password: "root"
   dbname: "simple_tiktok"
@@ -22,7 +24,9 @@ mysql:
 
 # redis配置
 redis:
-  host: "redis507"
+#  host: "120.77.176.211"
+#  port: 56379
+  host: "127.0.0.1"
   port: 6379
   db: 0
   pool_size: 100
