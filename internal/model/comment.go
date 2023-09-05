@@ -18,8 +18,8 @@ type CommentItem struct {
 	Id         int64     `json:"id"`
 	UserId     int64     `json:"-"`
 	Content    string    `json:"content"`
-	User       *UserItem `json:"user"`
 	CreateDate string    `json:"create_date"`
+	User       *UserItem `json:"user"`
 }
 
 // GetCommentListInput 显示评论列表 Input
