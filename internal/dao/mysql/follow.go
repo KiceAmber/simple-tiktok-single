@@ -2,9 +2,9 @@ package mysql
 
 import (
 	"go.uber.org/zap"
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/model/entity"
-	"simple_tiktok_rime/pkg/toolx"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/model/entity"
+	"simple_tiktok_single/pkg/toolx"
 )
 
 type dFollow struct {

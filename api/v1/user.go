@@ -1,6 +1,6 @@
 package v1
 
-import "simple_tiktok_rime/internal/consts"
+import "simple_tiktok_single/internal/consts"
 
 // UserRegisterReq 用户注册的请求结构体
 type UserRegisterReq struct {

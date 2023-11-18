@@ -3,7 +3,7 @@ package qiniu
 import (
 	"github.com/qiniu/go-sdk/v7/auth/qbox"
 	"github.com/qiniu/go-sdk/v7/storage"
-	"simple_tiktok_rime/manifest/config"
+	"simple_tiktok_single/manifest/config"
 )
 
 type Qiniu struct {

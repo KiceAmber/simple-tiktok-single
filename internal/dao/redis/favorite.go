@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"go.uber.org/zap"
-	"simple_tiktok_rime/internal/dao/mysql"
-	"simple_tiktok_rime/internal/model"
+	"simple_tiktok_single/internal/dao/mysql"
+	"simple_tiktok_single/internal/model"
 	"strconv"
 )
 

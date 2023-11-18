@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"simple_tiktok_rime/pkg/jwt"
+	"simple_tiktok_single/pkg/jwt"
 	"testing"
 )
 

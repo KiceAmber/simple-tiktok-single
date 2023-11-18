@@ -1,6 +1,6 @@
 package service
 
-import "simple_tiktok_rime/internal/model"
+import "simple_tiktok_single/internal/model"
 
 type IUser interface {
 	UserRegister(in *model.UserRegisterInput) (out *model.UserRegisterOutput, err error)

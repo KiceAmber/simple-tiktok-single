@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"errors"
-	"simple_tiktok_rime/internal/consts"
+	"simple_tiktok_single/internal/consts"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"

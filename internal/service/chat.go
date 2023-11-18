@@ -1,6 +1,6 @@
 package service
 
-import "simple_tiktok_rime/internal/model"
+import "simple_tiktok_single/internal/model"
 
 type IChat interface {
 	MessageAction(in *model.MessageActionInput) (out *model.MessageActionOutput, err error)

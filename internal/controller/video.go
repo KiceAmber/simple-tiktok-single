@@ -1,11 +1,11 @@
 package controller
 
 import (
-	v1 "simple_tiktok_rime/api/v1"
-	"simple_tiktok_rime/internal/consts"
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/service"
-	"simple_tiktok_rime/pkg/jwt"
+	v1 "simple_tiktok_single/api/v1"
+	"simple_tiktok_single/internal/consts"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/service"
+	"simple_tiktok_single/pkg/jwt"
 	"strconv"
 	"time"
 

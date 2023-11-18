@@ -1,8 +1,8 @@
 package mysql
 
 import (
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/model/entity"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/model/entity"
 )
 
 type dChat struct {

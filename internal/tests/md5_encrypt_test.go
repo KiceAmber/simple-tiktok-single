@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"simple_tiktok_rime/pkg/toolx"
+	"simple_tiktok_single/pkg/toolx"
 	"testing"
 )
 

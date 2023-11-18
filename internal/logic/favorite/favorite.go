@@ -1,11 +1,11 @@
 package favorite
 
 import (
-	"simple_tiktok_rime/internal/consts"
-	"simple_tiktok_rime/internal/dao/mysql"
-	"simple_tiktok_rime/internal/dao/redis"
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/service"
+	"simple_tiktok_single/internal/consts"
+	"simple_tiktok_single/internal/dao/mysql"
+	"simple_tiktok_single/internal/dao/redis"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/service"
 )
 
 type sFavorite struct{}

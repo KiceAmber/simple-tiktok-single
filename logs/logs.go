@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"os"
-	"simple_tiktok_rime/manifest/config"
+	"simple_tiktok_single/manifest/config"
 
 	"runtime/debug"
 	"strings"

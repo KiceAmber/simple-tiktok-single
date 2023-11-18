@@ -1,10 +1,10 @@
 package chat
 
 import (
-	"simple_tiktok_rime/internal/dao/mysql"
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/service"
-	"simple_tiktok_rime/pkg/snowflake"
+	"simple_tiktok_single/internal/dao/mysql"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/service"
+	"simple_tiktok_single/pkg/snowflake"
 )
 
 type sChat struct{}

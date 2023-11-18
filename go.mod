@@ -1,4 +1,4 @@
-module simple_tiktok_rime
+module simple_tiktok_single
 
 go 1.20
 

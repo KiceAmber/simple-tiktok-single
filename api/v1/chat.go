@@ -1,6 +1,6 @@
 package v1
 
-import "simple_tiktok_rime/internal/consts"
+import "simple_tiktok_single/internal/consts"
 
 // MessageActionReq 消息操作请求
 type MessageActionReq struct {

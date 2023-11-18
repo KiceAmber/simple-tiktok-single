@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"simple_tiktok_rime/internal/consts"
-	"simple_tiktok_rime/pkg/jwt"
+	"simple_tiktok_single/internal/consts"
+	"simple_tiktok_single/pkg/jwt"
 	"strings"
 )
 

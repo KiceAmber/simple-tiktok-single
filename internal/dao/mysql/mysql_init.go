@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"fmt"
-	"simple_tiktok_rime/manifest/config"
+	"simple_tiktok_single/manifest/config"
 	"sync"
 
 	_ "github.com/go-sql-driver/mysql"

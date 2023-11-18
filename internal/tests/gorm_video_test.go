@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"simple_tiktok_rime/internal/model/entity"
+	"simple_tiktok_single/internal/model/entity"
 	"testing"
 
 	"gorm.io/driver/mysql"

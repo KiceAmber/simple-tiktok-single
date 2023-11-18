@@ -2,7 +2,7 @@ package v1
 
 import (
 	"mime/multipart"
-	"simple_tiktok_rime/internal/consts"
+	"simple_tiktok_single/internal/consts"
 	"time"
 )
 

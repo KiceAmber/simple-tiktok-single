@@ -2,13 +2,13 @@ package user
 
 import (
 	"errors"
-	"simple_tiktok_rime/internal/consts"
-	"simple_tiktok_rime/internal/dao/mysql"
-	"simple_tiktok_rime/internal/model"
-	"simple_tiktok_rime/internal/service"
-	"simple_tiktok_rime/pkg/jwt"
-	"simple_tiktok_rime/pkg/snowflake"
-	"simple_tiktok_rime/pkg/toolx"
+	"simple_tiktok_single/internal/consts"
+	"simple_tiktok_single/internal/dao/mysql"
+	"simple_tiktok_single/internal/model"
+	"simple_tiktok_single/internal/service"
+	"simple_tiktok_single/pkg/jwt"
+	"simple_tiktok_single/pkg/snowflake"
+	"simple_tiktok_single/pkg/toolx"
 )
 
 type sUser struct{}

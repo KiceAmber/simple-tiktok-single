@@ -3,7 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
-	"simple_tiktok_rime/manifest/config"
+	"simple_tiktok_single/manifest/config"
 	"sync"
 
 	"github.com/go-redis/redis/v8"

@@ -2,14 +2,14 @@ package internal
 
 import (
 	"fmt"
-	"simple_tiktok_rime/internal/dao/mysql"
-	"simple_tiktok_rime/internal/dao/redis"
-	_ "simple_tiktok_rime/internal/logic"
-	"simple_tiktok_rime/internal/router"
-	"simple_tiktok_rime/logs"
-	"simple_tiktok_rime/manifest/config"
-	"simple_tiktok_rime/pkg/cron"
-	"simple_tiktok_rime/pkg/snowflake"
+	"simple_tiktok_single/internal/dao/mysql"
+	"simple_tiktok_single/internal/dao/redis"
+	_ "simple_tiktok_single/internal/logic"
+	"simple_tiktok_single/internal/router"
+	"simple_tiktok_single/logs"
+	"simple_tiktok_single/manifest/config"
+	"simple_tiktok_single/pkg/cron"
+	"simple_tiktok_single/pkg/snowflake"
 
 	"go.uber.org/zap"
 )

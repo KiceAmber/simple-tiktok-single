@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go.uber.org/zap"
-	"simple_tiktok_rime/internal/model"
+	"simple_tiktok_single/internal/model"
 )
 
 type dVideo struct {
